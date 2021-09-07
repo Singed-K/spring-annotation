@@ -1,16 +1,19 @@
 package com.singed.annotation.config;
 
 import com.singed.annotation.beans.Person;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import com.singed.annotation.condition.LinuxCondition;
+import com.singed.annotation.condition.WindowsCondition;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.context.annotation.Scope;
 
 /**
  * @author : Singed
  * @Date : 2021/9/7 21:24
  */
+//满足当前条件类中组件统一设置，这个类配置的所有bean才会生效
+//@Conditional(value = {WindowsCondition.class})
 @Configuration
 public class MainConfig2 {
     /**
@@ -30,15 +33,32 @@ public class MainConfig2 {
      * <p>
      * request：同一个请求创建一个实例
      * session:同一个session创建一个实例
-     *
+     * <p>
      * 懒加载：
-     *      单实例Bean：默认在容器启动的时候创建对象
-     *      懒加载：容器启动不创建对象。第一次使用（获取）Bean创建对象，并初始化
+     * 单实例Bean：默认在容器启动的时候创建对象
+     * 懒加载：容器启动不创建对象。第一次使用（获取）Bean创建对象，并初始化
      */
     @Lazy
     @Bean("person")
     public Person person() {
         System.out.println("给容器中添加Person。。。。。");
         return new Person("zhangsan", 25);
+    }
+
+    /**
+     * @Conditional : 按照一定的条件进行判断，满足条件给容器中注册Bean
+     * 如果系统是windows,给容器注册bill
+     * 如果系统是linux,给容器注册linus
+     */
+    @Conditional(value = {WindowsCondition.class})
+    @Bean("bill")
+    public Person person01() {
+        return new Person("Bill Gates", 62);
+    }
+
+    @Conditional(value = {LinuxCondition.class})
+    @Bean("linus")
+    public Person person02() {
+        return new Person("linus", 48);
     }
 }
