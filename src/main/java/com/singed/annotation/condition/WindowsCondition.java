@@ -24,8 +24,8 @@ public class WindowsCondition implements Condition {
         Environment environment = context.getEnvironment();
         //4.获取Bean定义的注册类
         BeanDefinitionRegistry registry = context.getRegistry();
-        boolean definition = registry.containsBeanDefinition("person");
-        System.out.println("context中是否包含person bean:" + definition);
+        /*boolean definition = registry.containsBeanDefinition("person");
+        System.out.println("context中是否包含person bean:" + definition);*/
         return Objects.requireNonNull(environment.getProperty("os.name")).contains("Windows");
     }
 }

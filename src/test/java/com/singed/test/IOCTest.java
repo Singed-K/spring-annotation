@@ -18,6 +18,18 @@ public class IOCTest {
     ApplicationContext context = new AnnotationConfigApplicationContext(MainConfig2.class);
 
     @Test
+    public void testImport(){
+        printBeans(context);
+    }
+
+    private void printBeans(ApplicationContext context){
+        String[] beanDefinitionNames = context.getBeanDefinitionNames();
+        for (String name : beanDefinitionNames) {
+            System.out.println(name);
+        }
+    }
+
+    @Test
     public void test01() {
         String[] beanDefinitionNames = context.getBeanDefinitionNames();
         for (String definitionName : beanDefinitionNames) {
