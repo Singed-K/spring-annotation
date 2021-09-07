@@ -2,7 +2,6 @@ package com.singed.test;
 
 import com.singed.annotation.beans.Blue;
 import com.singed.annotation.beans.Person;
-import com.singed.annotation.config.MainConfig;
 import com.singed.annotation.config.MainConfig2;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -23,6 +22,9 @@ public class IOCTest {
         printBeans(context);
         Blue bean = context.getBean(Blue.class);
         System.out.println(bean);
+        //Factory获取的是getObject创建的对象
+        Object colorFactoryBean = context.getBean("colorFactoryBean");
+        System.out.println("colorFactoryBean的类型:"+colorFactoryBean.getClass());
     }
 
     private void printBeans(ApplicationContext context){
@@ -64,5 +66,6 @@ public class IOCTest {
         }
         Map<String, Person> beansOfType = context.getBeansOfType(Person.class);
         System.out.println(beansOfType);
+
     }
 }

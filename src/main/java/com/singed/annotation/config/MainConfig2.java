@@ -1,9 +1,11 @@
 package com.singed.annotation.config;
 
 import com.singed.annotation.beans.Color;
+import com.singed.annotation.beans.ColorFactoryBean;
 import com.singed.annotation.beans.Person;
 import com.singed.annotation.beans.Red;
 import com.singed.annotation.condition.LinuxCondition;
+import com.singed.annotation.condition.MyImportBeanDefinitionRegistrar;
 import com.singed.annotation.condition.MyImportSelector;
 import com.singed.annotation.condition.WindowsCondition;
 import org.springframework.context.annotation.*;
@@ -16,7 +18,7 @@ import org.springframework.context.annotation.*;
 //@Conditional(value = {WindowsCondition.class})
 @Configuration
 //@Import(Color.class)
-@Import(value = {Color.class, Red.class, MyImportSelector.class})
+@Import(value = {Color.class, Red.class, MyImportSelector.class, MyImportBeanDefinitionRegistrar.class})
 //@Import快速导入组件，id默认是组件的全类名
 public class MainConfig2 {
     /**
@@ -71,10 +73,17 @@ public class MainConfig2 {
      * 都会被扫描直接加入容器中 自己实现的类
      * 2）@Bean导入的第三方包里面的组件
      * 3）@Import[快速的给容器中导入组件]
-     * @Import(value = {Color.class, Red.class})
-     * 容器中就会自动注册这个组件，id默认是全类名
-     * com.singed.annotation.beans.Color
-     * com.singed.annotation.beans.Red
-     * ImportSelector：返回需要导入的组件的全类名的数组
+     *      1] @Import(value = {Color.class, Red.class})
+     *          容器中就会自动注册这个组件，id默认是全类名
+     *          com.singed.annotation.beans.Color
+     *          com.singed.annotation.beans.Red
+     *      2] ImportSelector：返回需要导入的组件的全类名的数组
+     *      3] ImportBeanDefinitionRegistrar:手动注册到bean容器中
+     * 4）使用Spring提供的FactoryBean(工厂Bean)
      */
+    @Bean
+    public ColorFactoryBean colorFactoryBean(){
+        return new ColorFactoryBean();
+    }
+
 }
