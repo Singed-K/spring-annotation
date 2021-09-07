@@ -25,6 +25,8 @@ public class IOCTest {
         //Factory获取的是getObject创建的对象
         Object colorFactoryBean = context.getBean("colorFactoryBean");
         System.out.println("colorFactoryBean的类型:"+colorFactoryBean.getClass());
+        Object bean1 = context.getBean("&colorFactoryBean");
+        System.out.println("colorFactoryBean的类型:"+bean1.getClass());
     }
 
     private void printBeans(ApplicationContext context){

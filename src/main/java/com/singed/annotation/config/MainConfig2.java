@@ -80,6 +80,8 @@ public class MainConfig2 {
      *      2] ImportSelector：返回需要导入的组件的全类名的数组
      *      3] ImportBeanDefinitionRegistrar:手动注册到bean容器中
      * 4）使用Spring提供的FactoryBean(工厂Bean)
+     *      1] 默认调用的是FactoryBean的getObject创建的对象
+     *      2] 要获取FactoryBean本身，我们需要再id前面加一个&标识
      */
     @Bean
     public ColorFactoryBean colorFactoryBean(){
