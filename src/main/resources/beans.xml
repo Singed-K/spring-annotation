@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+    <!-- 包扫描 只要标注了@Controller/@Service/@Repository/@Component 都会被扫描直接加入容器中-->
+    <context:component-scan base-package="com.singed"></context:component-scan>
     <bean id="person" class="com.singed.annotation.beans.Person">
         <property name="name" value="zhangsan"></property>
         <property name="age" value="18"></property>
