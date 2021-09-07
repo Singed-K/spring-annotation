@@ -1,5 +1,6 @@
 package com.singed.test;
 
+import com.singed.annotation.beans.Blue;
 import com.singed.annotation.beans.Person;
 import com.singed.annotation.config.MainConfig;
 import com.singed.annotation.config.MainConfig2;
@@ -20,6 +21,8 @@ public class IOCTest {
     @Test
     public void testImport(){
         printBeans(context);
+        Blue bean = context.getBean(Blue.class);
+        System.out.println(bean);
     }
 
     private void printBeans(ApplicationContext context){

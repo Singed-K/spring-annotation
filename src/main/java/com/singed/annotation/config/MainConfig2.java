@@ -4,6 +4,7 @@ import com.singed.annotation.beans.Color;
 import com.singed.annotation.beans.Person;
 import com.singed.annotation.beans.Red;
 import com.singed.annotation.condition.LinuxCondition;
+import com.singed.annotation.condition.MyImportSelector;
 import com.singed.annotation.condition.WindowsCondition;
 import org.springframework.context.annotation.*;
 
@@ -15,7 +16,7 @@ import org.springframework.context.annotation.*;
 //@Conditional(value = {WindowsCondition.class})
 @Configuration
 //@Import(Color.class)
-@Import(value = {Color.class, Red.class})
+@Import(value = {Color.class, Red.class, MyImportSelector.class})
 //@Import快速导入组件，id默认是组件的全类名
 public class MainConfig2 {
     /**
