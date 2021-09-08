@@ -2,7 +2,6 @@ package com.singed.test;
 
 import com.singed.annotation.config.MainConfigOfLifeCycle;
 import org.junit.Test;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
