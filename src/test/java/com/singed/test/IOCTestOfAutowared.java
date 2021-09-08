@@ -1,5 +1,8 @@
 package com.singed.test;
 
+import com.singed.annotation.beans.Boss;
+import com.singed.annotation.beans.Car;
+import com.singed.annotation.beans.Color;
 import com.singed.annotation.config.MainConfigOfAutowired;
 import com.singed.annotation.dao.BookDao;
 import com.singed.annotation.service.BookService;
@@ -20,6 +23,12 @@ public class IOCTestOfAutowared {
         System.out.println(bookService);
         //BookDao bookDao = context.getBean(BookDao.class);
         //System.out.println(bookDao);
+        Boss boss = context.getBean(Boss.class);
+        System.out.println(boss);
+        Car car = context.getBean(Car.class);
+        System.out.println(car);
+        Color color = context.getBean(Color.class);
+        System.out.println(color);
         context.close();
     }
 
